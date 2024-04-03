@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmbr5jjwa3nbe"]
+
+[ext_resource type="Script" path="res://Scenes/PlaneController.gd" id="1_nyxwk"]
+[ext_resource type="PackedScene" uid="uid://7c1qbcwpt1ov" path="res://imported/Plane.blend" id="2_3cjlr"]
+[ext_resource type="Script" path="res://scripts/Plane_UI.gd" id="3_y3bo4"]
+[ext_resource type="PackedScene" uid="uid://brx2napjoce7l" path="res://Scenes/mouse_analog_input.tscn" id="4_i34m1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qgy06"]
+height = 5.89689
+radius = 1.03027
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ic4le"]
+size = Vector3(2.635, 1, 1)
+
+[node name="Plane" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_nyxwk")
+
+[node name="Plane2" parent="." instance=ExtResource("2_3cjlr")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0151838, 0.999885, 0, -0.999885, 0.0151838, 0, 0, 0.759901)
+shape = SubResource("CylinderShape3D_qgy06")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.27412, -1.15221)
+shape = SubResource("BoxShape3D_ic4le")
+
+[node name="Plane_UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("target", "gauge", "label")]
+script = ExtResource("3_y3bo4")
+target = NodePath("..")
+gauge = NodePath("current_speed")
+label = NodePath("current_speed/speed")
+
+[node name="mouse_analog_input" parent="Plane_UI" instance=ExtResource("4_i34m1")]
+
+[node name="current_speed" type="ProgressBar" parent="Plane_UI"]
+custom_minimum_size = Vector2(20, 100)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -137.0
+offset_right = 33.0
+offset_bottom = -37.0
+grow_vertical = 0
+fill_mode = 3
+show_percentage = false
+
+[node name="speed" type="Label" parent="Plane_UI/current_speed"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 2.0
+offset_right = 77.0
+offset_bottom = 25.0
+
+[connection signal="analog_input" from="Plane_UI/mouse_analog_input" to="." method="_on_mouse_analog_input_analog_input"]

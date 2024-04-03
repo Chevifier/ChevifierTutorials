@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://brx2napjoce7l"]
+
+[ext_resource type="Script" path="res://Analog_Input.gd" id="1_ju6rt"]
+[ext_resource type="Script" path="res://Label.gd" id="2_5ewqw"]
+
+[node name="mouse_analog_input" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ju6rt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 70.0
+offset_right = 41.0
+offset_bottom = 93.0
+text = "X: 0.0, Y: 0.0"
+horizontal_alignment = 1
+script = ExtResource("2_5ewqw")
+
+[connection signal="analog_input" from="." to="Label" method="_on_mouse_analog_input_analog_input"]
