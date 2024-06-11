@@ -1,0 +1,256 @@
+[gd_scene load_steps=21 format=3 uid="uid://c2abqxryf5leq"]
+
+[ext_resource type="Texture2D" uid="uid://d3b2wvnjdf1lw" path="res://Assets/ui_icons.png" id="3_sibvw"]
+[ext_resource type="PackedScene" uid="uid://cstn0adhuubun" path="res://Player/Player.tscn" id="5_em110"]
+[ext_resource type="PackedScene" uid="uid://bf571fwhkw4lg" path="res://Player/GameCamera.tscn" id="6_pw1x8"]
+[ext_resource type="PackedScene" uid="uid://cgptjkxb78fh6" path="res://World/rockA.glb" id="7_mwyri"]
+[ext_resource type="PackedScene" uid="uid://bj3c2r5ggdfqo" path="res://UI/slot.tscn" id="9_ay8r4"]
+[ext_resource type="Script" path="res://inventory_ui.gd" id="9_o6lle"]
+[ext_resource type="PackedScene" uid="uid://f81gn30ilh5f" path="res://World/tree.glb" id="9_tq102"]
+[ext_resource type="PackedScene" uid="uid://c7r1jwu0driei" path="res://GameObjects/Apple.tscn" id="11_ok5cc"]
+[ext_resource type="Script" path="res://PopupMenu.gd" id="11_shl2l"]
+[ext_resource type="PackedScene" uid="uid://dqoblrovbwrnv" path="res://GameObjects/Stone.tscn" id="12_e0l8b"]
+[ext_resource type="PackedScene" uid="uid://d4e7jkm871aje" path="res://GameObjects/Stick.tscn" id="13_ifo0c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew2ao"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vijjs"]
+sky_material = SubResource("ProceduralSkyMaterial_ew2ao")
+
+[sub_resource type="Environment" id="Environment_cjp11"]
+background_mode = 2
+sky = SubResource("Sky_vijjs")
+tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.5
+
+[sub_resource type="Gradient" id="Gradient_rwl2u"]
+offsets = PackedFloat32Array(0, 0.368852, 0.795082, 1)
+colors = PackedColorArray(1.92523e-06, 0.513002, 0, 1, 0.140417, 0.378501, 0.140642, 1, 0.154778, 0.364745, 0.155026, 1, 0.194669, 0.326534, 0.194981, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8asdl"]
+fractal_octaves = 1
+fractal_lacunarity = 1.785
+fractal_gain = 0.515
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sff0e"]
+color_ramp = SubResource("Gradient_rwl2u")
+noise = SubResource("FastNoiseLite_8asdl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brfja"]
+albedo_texture = SubResource("NoiseTexture2D_sff0e")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rea4"]
+atlas = ExtResource("3_sibvw")
+region = Rect2(340, 20, 37, 36)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37k6h"]
+texture = SubResource("AtlasTexture_0rea4")
+texture_margin_left = 15.9176
+texture_margin_top = 16.8874
+texture_margin_right = 16.6006
+texture_margin_bottom = 15.6129
+region_rect = Rect2(0, 0, 36.6617, 35.8433)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cjp11")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169945, 3.8147e-06, -0.06077)
+material_override = SubResource("StandardMaterial3D_brfja")
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="Character" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_em110")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477484, 0)
+speed = 8
+camera = NodePath("../GameCamera")
+
+[node name="GameCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_pw1x8")]
+target = NodePath("../Character")
+Rotation_Min = -80
+Rotation_Max = 20
+offset = Vector3(0, 2, 0)
+
+[node name="rockA2" parent="." instance=ExtResource("7_mwyri")]
+transform = Transform3D(5.36846, 0, 0, 0, 5.36846, 0, 0, 0, 5.36846, -2, 0.471004, -1)
+
+[node name="trees" type="Node3D" parent="."]
+
+[node name="tree2" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 6.14812, 0.5, -1.95244)
+
+[node name="tree3" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 12.3551, 0.432175, -8.13221)
+
+[node name="tree4" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 13.9799, 0.500071, 13.7688)
+
+[node name="tree5" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 3.20288, 0.500071, 14.2293)
+
+[node name="tree6" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, -12.5006, 0.500071, 0.799329)
+
+[node name="tree7" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, -9.53896, 0.500071, -16.6437)
+
+[node name="tree8" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, -1.96371, 0.500071, -8.97633)
+
+[node name="tree9" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, -6.41438, 0.500071, 11.2951)
+
+[node name="tree10" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 16.6648, 0.500071, 2.31657)
+
+[node name="tree11" parent="trees" instance=ExtResource("9_tq102")]
+transform = Transform3D(6.30558, 0, 0, 0, 6.30558, 0, 0, 0, 6.30558, 19.6697, 0.500071, -10.4705)
+
+[node name="pickups" type="Node" parent="."]
+
+[node name="Apple2" parent="pickups" instance=ExtResource("11_ok5cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15066, 0.928296, -5.94122)
+
+[node name="Apple3" parent="pickups" instance=ExtResource("11_ok5cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525732, 0.796763, -10.0796)
+
+[node name="Apple4" parent="pickups" instance=ExtResource("11_ok5cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5573, 0.825769, -8.42926)
+
+[node name="Apple5" parent="pickups" instance=ExtResource("11_ok5cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2243, 0.795364, -14.6714)
+
+[node name="Apple6" parent="pickups" instance=ExtResource("11_ok5cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2822, 0.911166, -0.158908)
+
+[node name="Stone" parent="pickups" instance=ExtResource("12_e0l8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95171, 0.45317, 5.2444)
+
+[node name="Stone2" parent="pickups" instance=ExtResource("12_e0l8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.953266, 0.45317, 7.75938)
+
+[node name="Stone3" parent="pickups" instance=ExtResource("12_e0l8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45209, 0.503277, 1.17825)
+
+[node name="Stone4" parent="pickups" instance=ExtResource("12_e0l8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89032, 0.503277, 16.5967)
+
+[node name="Stick" parent="pickups" instance=ExtResource("13_ifo0c")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.26678, 0.553243, 4.82829)
+
+[node name="Stick2" parent="pickups" instance=ExtResource("13_ifo0c")]
+transform = Transform3D(-1.71398e-08, -0.392112, -0.919917, 1, -4.37114e-08, 0, -4.02109e-08, -0.919917, 0.392112, -6.30968, 0.553242, 3.64359)
+
+[node name="Stick3" parent="pickups" instance=ExtResource("13_ifo0c")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -11.3097, 0.553242, 2.64359)
+
+[node name="Stick4" parent="pickups" instance=ExtResource("13_ifo0c")]
+transform = Transform3D(-1.6841e-08, -0.385278, 0.922801, 1, -4.37114e-08, 0, 4.03369e-08, 0.922801, 0.385278, -16.0436, 0.553242, 0.478124)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventory_ui" type="PanelContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -157.0
+offset_right = 169.254
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_37k6h")
+script = ExtResource("9_o6lle")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/inventory_ui"]
+layout_mode = 2
+columns = 4
+
+[node name="slot0" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot1" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot2" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot3" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot4" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot5" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot6" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot7" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot8" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot9" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot10" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot11" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot12" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot13" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot14" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="slot15" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
+layout_mode = 2
+
+[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer/UI/inventory_ui"]
+unique_name_in_owner = true
+size = Vector2i(100, 116)
+visible = true
+item_count = 4
+item_0/text = "use"
+item_0/id = 0
+item_1/text = "split"
+item_1/id = 3
+item_2/text = "discard 1"
+item_2/id = 1
+item_3/text = "delete all"
+item_3/id = 2
+script = ExtResource("11_shl2l")
+
+[connection signal="index_pressed" from="CanvasLayer/UI/inventory_ui/PopupMenu" to="CanvasLayer/UI/inventory_ui/PopupMenu" method="_on_index_pressed"]

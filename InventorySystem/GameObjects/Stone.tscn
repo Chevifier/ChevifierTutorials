@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqoblrovbwrnv"]
+
+[ext_resource type="PackedScene" uid="uid://k4jm1q7pi2ds" path="res://GameObjects/Stone.glb" id="1_wm35h"]
+[ext_resource type="Script" path="res://GameObjects/Pickup.gd" id="2_qwm4o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hb6m0"]
+radius = 0.283851
+
+[node name="Stone" instance=ExtResource("1_wm35h")]
+script = ExtResource("2_qwm4o")
+pickup_name = "Stone"
+
+[node name="Stone" parent="." index="0"]
+transform = Transform3D(3.78846, 0, 0, 0, 3.78846, 0, 0, 0, 3.78846, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118165, 0)
+shape = SubResource("SphereShape3D_hb6m0")

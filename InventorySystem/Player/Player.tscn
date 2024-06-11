@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cstn0adhuubun"]
+
+[ext_resource type="PackedScene" uid="uid://fse5rcur8xm3" path="res://Player/Character.blend" id="1_rc6fp"]
+[ext_resource type="Script" path="res://Player/TPSPlayerController.gd" id="2_rp6vl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8fbfy"]
+height = 4.0
+
+[node name="Character" groups=["player"] instance=ExtResource("1_rc6fp")]
+script = ExtResource("2_rp6vl")
+
+[node name="Root" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Root" index="0"]
+bones/0/position = Vector3(0.204209, 0.193205, -0.14881)
+bones/9/position = Vector3(-0.207521, 0.193205, -0.14881)
+bones/21/rotation = Quaternion(0.0118946, 1.00854e-08, 1.10452e-08, 0.999929)
+bones/27/rotation = Quaternion(-0.324366, 0.648014, -0.335662, 0.601827)
+bones/38/rotation = Quaternion(0.0859301, 0.855449, 0.474269, -0.189452)
+bones/39/rotation = Quaternion(0.000733747, -0.00476759, 0.0470719, 0.99888)
+bones/48/rotation = Quaternion(0.96718, -0.0139811, 0.253689, 0.00301928)
+bones/49/rotation = Quaternion(0.141568, 0.0324443, 0.0528525, 0.987984)
+bones/50/rotation = Quaternion(-0.543807, -0.194182, -0.187546, 0.794603)
+bones/53/rotation = Quaternion(0.972699, 0.0014227, -0.232065, 0.00103138)
+bones/53/scale = Vector3(1.00005, 1, 1)
+bones/54/rotation = Quaternion(0.138968, 0.0115101, -0.0591813, 0.98846)
+bones/55/rotation = Quaternion(-0.548494, 0.228828, 0.17182, 0.785665)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CapsuleShape3D_8fbfy")

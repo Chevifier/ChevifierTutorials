@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4e7jkm871aje"]
+
+[ext_resource type="PackedScene" uid="uid://vg6sps3upckx" path="res://GameObjects/Stick.glb" id="1_sbtnv"]
+[ext_resource type="Script" path="res://GameObjects/Pickup.gd" id="2_0jxf7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fmou6"]
+height = 0.789877
+radius = 0.0796209
+
+[node name="Stick" instance=ExtResource("1_sbtnv")]
+script = ExtResource("2_0jxf7")
+pickup_name = "Stick"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("CylinderShape3D_fmou6")

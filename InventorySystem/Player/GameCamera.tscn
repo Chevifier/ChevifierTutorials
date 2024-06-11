@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf571fwhkw4lg"]
+
+[ext_resource type="Script" path="res://Player/GameCamera.gd" id="1"]
+
+[node name="GameCamera" type="Node3D"]
+script = ExtResource("1")
+Rotation_Min = -20
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.16088)
+far = 1000.0
