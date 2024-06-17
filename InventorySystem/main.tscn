@@ -1,16 +1,21 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2abqxryf5leq"]
+[gd_scene load_steps=44 format=3 uid="uid://c2abqxryf5leq"]
 
 [ext_resource type="Texture2D" uid="uid://d3b2wvnjdf1lw" path="res://Assets/ui_icons.png" id="3_sibvw"]
 [ext_resource type="PackedScene" uid="uid://cstn0adhuubun" path="res://Player/Player.tscn" id="5_em110"]
 [ext_resource type="PackedScene" uid="uid://bf571fwhkw4lg" path="res://Player/GameCamera.tscn" id="6_pw1x8"]
 [ext_resource type="PackedScene" uid="uid://cgptjkxb78fh6" path="res://World/rockA.glb" id="7_mwyri"]
+[ext_resource type="Texture2D" uid="uid://c4id3w14dd06e" path="res://UI/icons/head.tres" id="8_1k413"]
 [ext_resource type="PackedScene" uid="uid://bj3c2r5ggdfqo" path="res://UI/slot.tscn" id="9_ay8r4"]
 [ext_resource type="Script" path="res://inventory_ui.gd" id="9_o6lle"]
 [ext_resource type="PackedScene" uid="uid://f81gn30ilh5f" path="res://World/tree.glb" id="9_tq102"]
+[ext_resource type="Script" path="res://UI/EquipmentSlot.gd" id="9_ydw6x"]
+[ext_resource type="Texture2D" uid="uid://cjwnyhinbacee" path="res://UI/icons/hands.tres" id="11_dpvr0"]
 [ext_resource type="PackedScene" uid="uid://c7r1jwu0driei" path="res://GameObjects/Apple.tscn" id="11_ok5cc"]
 [ext_resource type="Script" path="res://PopupMenu.gd" id="11_shl2l"]
 [ext_resource type="PackedScene" uid="uid://dqoblrovbwrnv" path="res://GameObjects/Stone.tscn" id="12_e0l8b"]
+[ext_resource type="Texture2D" uid="uid://bnkoijg5rwvdu" path="res://UI/icons/pants.tres" id="12_yioge"]
 [ext_resource type="PackedScene" uid="uid://d4e7jkm871aje" path="res://GameObjects/Stick.tscn" id="13_ifo0c"]
+[ext_resource type="Texture2D" uid="uid://27afv6knpgfm" path="res://UI/icons/feet.tres" id="13_vmtp1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew2ao"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -46,6 +51,14 @@ noise = SubResource("FastNoiseLite_8asdl")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brfja"]
 albedo_texture = SubResource("NoiseTexture2D_sff0e")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm6w7"]
+atlas = ExtResource("3_sibvw")
+region = Rect2(432, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxvcs"]
+atlas = ExtResource("3_sibvw")
+region = Rect2(272, 88, 72, 71)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rea4"]
 atlas = ExtResource("3_sibvw")
 region = Rect2(340, 20, 37, 36)
@@ -57,6 +70,86 @@ texture_margin_top = 16.8874
 texture_margin_right = 16.6006
 texture_margin_bottom = 15.6129
 region_rect = Rect2(0, 0, 36.6617, 35.8433)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whhm3"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e3nv"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qj13"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hinpc"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m322c"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51ita"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuoyy"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj3ek"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blv2v"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0r0a"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yheoy"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm5fw"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw08x"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7g2a"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn2iq"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hdsw"]
+resource_local_to_scene = true
+atlas = ExtResource("3_sibvw")
+region = Rect2(105, 88, 72, 71)
 
 [node name="Main" type="Node3D"]
 
@@ -170,6 +263,115 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Equipment" type="Control" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -24.132
+offset_bottom = 24.132
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="equipslot0" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -362.0
+offset_top = -143.868
+offset_right = -290.0
+offset_bottom = -72.868
+texture = ExtResource("8_1k413")
+script = ExtResource("9_ydw6x")
+slot_type = 1
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot0"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="equipslot1" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -362.0
+offset_top = -53.868
+offset_right = -290.0
+offset_bottom = 17.132
+texture = SubResource("AtlasTexture_lm6w7")
+script = ExtResource("9_ydw6x")
+slot_type = 4
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot1"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="equipslot2" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -446.0
+offset_top = -55.868
+offset_right = -374.0
+offset_bottom = 15.132
+texture = ExtResource("11_dpvr0")
+script = ExtResource("9_ydw6x")
+slot_type = 2
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot2"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="equipslot3" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -278.0
+offset_top = -52.868
+offset_right = -206.0
+offset_bottom = 18.132
+texture = SubResource("AtlasTexture_uxvcs")
+script = ExtResource("9_ydw6x")
+slot_type = 3
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot3"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="equipslot4" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -362.0
+offset_top = 31.132
+offset_right = -290.0
+offset_bottom = 102.132
+texture = ExtResource("12_yioge")
+script = ExtResource("9_ydw6x")
+slot_type = 5
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot4"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="equipslot5" type="TextureRect" parent="CanvasLayer/UI/Equipment"]
+layout_mode = 0
+offset_left = -363.0
+offset_top = 119.132
+offset_right = -291.0
+offset_bottom = 190.132
+texture = ExtResource("13_vmtp1")
+script = ExtResource("9_ydw6x")
+slot_type = 6
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/UI/Equipment/equipslot5"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
+
 [node name="inventory_ui" type="PanelContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 8
@@ -192,51 +394,67 @@ columns = 4
 
 [node name="slot0" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_whhm3")
 
 [node name="slot1" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_7e3nv")
 
 [node name="slot2" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_0qj13")
 
 [node name="slot3" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_hinpc")
 
 [node name="slot4" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_m322c")
 
 [node name="slot5" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_51ita")
 
 [node name="slot6" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_fuoyy")
 
 [node name="slot7" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_lj3ek")
 
 [node name="slot8" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_blv2v")
 
 [node name="slot9" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_f0r0a")
 
 [node name="slot10" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_yheoy")
 
 [node name="slot11" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_dm5fw")
 
 [node name="slot12" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_tw08x")
 
 [node name="slot13" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_b7g2a")
 
 [node name="slot14" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_dn2iq")
 
 [node name="slot15" parent="CanvasLayer/UI/inventory_ui/GridContainer" instance=ExtResource("9_ay8r4")]
 layout_mode = 2
+texture = SubResource("AtlasTexture_4hdsw")
 
 [node name="PopupMenu" type="PopupMenu" parent="CanvasLayer/UI/inventory_ui"]
 unique_name_in_owner = true

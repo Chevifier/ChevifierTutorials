@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d3b2wvnjdf1lw" path="res://Assets/ui_icons.png" id="1_2axxw"]
 
 [resource]
+resource_local_to_scene = true
 atlas = ExtResource("1_2axxw")
 region = Rect2(105, 88, 72, 71)

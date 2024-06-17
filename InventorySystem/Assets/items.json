@@ -1,0 +1,78 @@
+{
+    "apple": {
+        "item_name": "Apple",
+        "type" : "default",
+        "use":"consumable",
+        "health": 20,
+        "stackable" : true,
+        "max_stack": 16,
+        "disc": "a fruit",
+        "icon_path": "res://UI/icons/apple_icon.tres"
+    },
+    "stick": {
+        "item_name": "Stick",
+        "type" : "default",
+        "use":"crafting",
+        "max_stack": 16,
+        "disc": "",
+        "icon_path": "res://UI/icons/stick_icon.tres"
+    },
+    "stone":{
+        "item_name": "Stone",
+        "type" : "default",
+        "use":"crafting",
+        "max_stack": 16,
+        "disc": "",
+        "icon_path": "res://UI/icons/stone_icon.tres"
+    },
+    "cloth":{
+        "item_name": "Cloth",
+        "type" : "default",
+        "use":"crafting",
+        "max_stack": 16,
+        "disc": "",
+        "icon_path": "res://UI/icons/cloth_icon.tres"
+    },
+    "box":{
+        "item_name": "Box",
+        "type" : "default",
+        "use":"crafting",
+        "max_stack": 16,
+        "disc": "",
+        "icon_path": "res://UI/icons/box_icon.tres"
+    },
+    "wooden_sword":{
+        "item_name": "Wooden Sword",
+        "type" : "weapon",
+        "use":"crafting",
+        "max_stack": 1,
+        "disc": "",
+        "icon_path": "res://UI/icons/wooden_sword.tres"
+    },
+    "red_hat":{
+        "item_name": "Red Hat",
+        "type" : "head",
+        "defense": 5,
+        "max_stack": 1,
+        "disc": "",
+        "icon_path": "res://UI/icons/red_hat.tres"
+    },
+    "blue_shirt":{
+        "item_name": "Blue Shirt",
+        "type" : "chest",
+        "defense": 5,
+        "max_stack": 1,
+        "disc": "",
+        "icon_path": "res://UI/icons/blue_shirt.tres"
+    },
+    "basic_shoes":{
+        "item_name": "Basic Shoes",
+        "type" : "feet",
+        "defense": 1,
+        "max_stack": 1,
+        "disc": "",
+        "icon_path": "res://UI/icons/basic_shoe.tres"
+    }
+
+
+}

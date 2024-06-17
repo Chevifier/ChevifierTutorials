@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Inventory System Tutorial"
-run/main_scene="res://GameObjects/Stone.glb"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Inventory="*res://GlobalScripts/Inventory.gd"
+GameData="*res://GlobalScripts/GameData.gd"
 
 [filesystem]
 

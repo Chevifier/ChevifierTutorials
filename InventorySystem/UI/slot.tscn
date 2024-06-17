@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj3c2r5ggdfqo"]
 
 [ext_resource type="Texture2D" uid="uid://cdykmtq0i4pw6" path="res://UI/icons/Slot_bg.tres" id="1_3ogug"]
-[ext_resource type="Script" path="res://UI/Slot.gd" id="1_gnjrm"]
+[ext_resource type="Script" path="res://UI/Slot.gd" id="2_vy1b0"]
 [ext_resource type="Texture2D" uid="uid://bmtgw5cibpaue" path="res://UI/icons/apple_icon.tres" id="3_jw01i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_35cdd"]
@@ -11,7 +11,7 @@ font_size = 28
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_3ogug")
-script = ExtResource("1_gnjrm")
+script = ExtResource("2_vy1b0")
 
 [node name="icon" type="TextureRect" parent="."]
 layout_mode = 0

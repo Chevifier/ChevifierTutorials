@@ -8,7 +8,8 @@ func open(slot):
 func _on_index_pressed(index: int) -> void:
 	match(index):
 		0:
-			#restore health
+			#do something i.e restore health 
+			#equip item etc
 			Inventory.remove_item(current_slot.name,1)
 		1:
 			Inventory.spit_slot(current_slot.name)

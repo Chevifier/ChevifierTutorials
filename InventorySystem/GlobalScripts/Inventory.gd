@@ -1,37 +1,71 @@
 extends Node
 signal updated()
 var inventory = {}
+var equipment = {}
 #total slots
 const SLOTS = 16
-#Sample icons Note use a config file or some external file instead
-@onready var icons = {
-	"stick" : preload("res://UI/icons/stick_icon.tres"),
-	"box" : preload("res://UI/icons/box_icon.tres"),
-	"stone": preload("res://UI/icons/stone_icon.tres"),
-	"apple": preload("res://UI/icons/apple_icon.tres"),
-	"cloth": preload("res://UI/icons/cloth_icon.tres")
-}
+const EQUIP_SLOTS = 7
 func _ready() -> void:
 	initailize()
+	GameData.load_game_data(GameData.file_path)
 	create_sample_inventory()
 
 #create all 16 empty slots
 func initailize():
 	for i in SLOTS:
 		inventory["slot"+str(i)] = {}
-
+	inventory["equipment"] = {}
+	for equip_slot in range(EQUIP_SLOTS): #7 types of equipment slots
+		equipment[equip_slot] = {}
+		
 #sample inventory for testing
 func create_sample_inventory():
 	for slot in inventory:
-		if randf() >= 0.5:
+		if randf() >= 0.9:
 			continue
-		var items = ["Apple", "Stone", "Stick", "Cloth"]
+		var items = ["apple", "stone", "stick", "cloth","wooden_sword"]
+		items.append_array(["red_hat","blue_shirt"])
+		var item = items.pick_random()
 		inventory[slot] = {
-			"item_name": items.pick_random(),
-			"quantity" : randi_range(1,10)
+			"item_name": item,
+			"type": GameData.get_item_type(item)
 		}
+		if GameData.get_stackable(item):
+			inventory[slot]["quantity"] = randi_range(1,10)
+		else:
+			inventory[slot]["quantity"] = 1
+	inventory.slot0 = GameData.get_item("red_hat",1)
+	inventory.slot1 = GameData.get_item("wooden_sword",1)
+	inventory.slot2 = GameData.get_item("blue_shirt",1)
+	inventory.slot3 = GameData.get_item("basic_shoes",1)
 	updated.emit()
 
+#Equip and item remving it from thew inventory slot and add it to the equipment slot
+func equip_item(from_slot,equip_slot,item):
+	if equipment[equip_slot].is_empty():
+		equipment[equip_slot] = item
+		inventory[from_slot].clear()
+	else:
+		var equiped_item = equipment[equip_slot].duplicate()
+		equipment[equip_slot] = item
+		inventory[from_slot] = equiped_item
+#remove item from equipment slot put in inventory
+func unequip_item(equip_slot,to_slot = ""):
+	if to_slot != "":
+		if inventory[to_slot].is_empty():
+			inventory[to_slot] = equipment[equip_slot].duplicate()
+			equipment[equip_slot].clear()
+			return
+		else:
+			return
+	#else put in first free slot
+	for slot in inventory:
+		if inventory[slot].is_empty():
+			inventory[slot] = equipment[equip_slot]
+			equipment[equip_slot].clear()
+			break
+		#else no space to unequip i.e do nothing
+		#could do a notification here to player that their inventory is full
 #Add item to any slot that already has the item
 #else add it to the first empty slot
 func add_item(item_name,quantity):
@@ -51,7 +85,8 @@ func add_item(item_name,quantity):
 		return
 	inventory[empty_slot] = {
 		"item_name": item_name,
-		"quantity" : quantity
+		"quantity" : quantity,
+		"type": GameData.get_item_type(item_name)
 	}
 	updated.emit()
 
@@ -67,16 +102,17 @@ func remove_item(slot,quantity):
 #if slot is same item increase quantity
 #else swap items 
 func move_item(quantity,from_slot,to_slot):
-	var item = inventory[from_slot].item_name
+	var item = inventory[from_slot]
 	if inventory[to_slot].is_empty():
 		inventory[to_slot] = {
-			"item_name" : item,
+			"item_name" : item.item_name,
 			"quantity" : quantity
 		}
 		inventory[from_slot].quantity -= quantity
-	elif inventory[to_slot].item_name == item:
-		inventory[to_slot].quantity += quantity
-		inventory[from_slot].quantity -= quantity
+	elif inventory[to_slot].item_name == item.item_name:
+		if GameData.get_stackable(item.item_name):
+			inventory[to_slot].quantity += quantity
+			inventory[from_slot].quantity -= quantity
 	else:
 		swap_item(from_slot,to_slot)
 		
@@ -105,4 +141,8 @@ func swap_item(from_slot, to_slot):
 
 #get a texture for the item
 func get_item_texture(item_name:String):
-	return icons[item_name.to_lower()]
+	var icon = load(GameData.get_icon_path(item_name))
+	if icon:
+		return icon
+	else:
+		return load(GameData.default_icon)

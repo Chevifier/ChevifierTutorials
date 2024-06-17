@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy3kjgxqabcb8"]
+
+[ext_resource type="Texture2D" uid="uid://cdykmtq0i4pw6" path="res://UI/icons/Slot_bg.tres" id="1_40po7"]
+[ext_resource type="Script" path="res://UI/EquipmentSlot.gd" id="2_ytf73"]
+
+[node name="equipslot0" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_40po7")
+script = ExtResource("2_ytf73")
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+mouse_filter = 2
