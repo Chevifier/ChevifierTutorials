@@ -40,7 +40,7 @@ func create_sample_inventory():
 	inventory.slot3 = GameData.get_item("basic_shoes",1)
 	updated.emit()
 
-#Equip and item remving it from thew inventory slot and add it to the equipment slot
+#Equip and item removing it from thew inventory slot and add it to the equipment slot
 func equip_item(from_slot,equip_slot,item):
 	if equipment[equip_slot].is_empty():
 		equipment[equip_slot] = item
