@@ -7,7 +7,10 @@ const DIST = 1000 #Ray Max distance
 
 func _process(delta: float) -> void:
 	if grabbed_object:
-		grabbed_object.position = get_grab_position()
+		if grabbed_object is RigidBody3D:
+			lift_item(grabbed_object,get_grab_position(),delta)
+		else:
+			grabbed_object.position = get_grab_position()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -37,3 +40,13 @@ func get_mouse_world_pos(mouse:Vector2):
 #Get the position in the world you want to object to follow
 func get_grab_position():
 	return get_viewport().get_camera_3d().project_position(mouse,grab_distance)
+
+func lift_item(item:RigidBody3D,target_position:Vector3,delta):
+		#attach to objects to move
+		var I = 500.0 #influence #export to make adjustable
+		var S = 20.0 #stiffness #export to make adjustable
+		var P = target_position - item.global_position
+		var M = item.mass
+		var V = item.linear_velocity
+		var impulse = (I*P) - (S*M*V)
+		item.apply_central_impulse(impulse * delta)
