@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "library_init"
+compatibility_minimum = "4.3"
+reloadable = true
+
+[libraries]
+
+
+linux.debug.x86_64 = "res://bin/libBouncySprite.linux.template_debug.x86_64.so"
+windows.debug.x86_64 = "res://bin/libBouncySprite.windows.template_debug.x86_64.dll"

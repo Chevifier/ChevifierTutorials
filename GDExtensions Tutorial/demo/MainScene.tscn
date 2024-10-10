@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0bojd43e3tjn"]
+
+[ext_resource type="Texture2D" uid="uid://bpwq5vt3tri0v" path="res://DVD-Video_Logo_Scaled.png" id="1_hnkqs"]
+[ext_resource type="Script" path="res://DVD.gd" id="2_jfhig"]
+
+[node name="BouncySprite" type="BouncySprite"]
+speed = 120.0
+self_modulate = Color(0.146961, 0.328061, 0.42325, 1)
+position = Vector2(965.177, 485.953)
+texture = ExtResource("1_hnkqs")
+script = ExtResource("2_jfhig")
+
+[connection signal="direction_changed" from="." to="." method="_on_direction_changed"]
