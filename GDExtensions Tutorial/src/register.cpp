@@ -1,12 +1,13 @@
 #include "register.hpp"
 
-
-#include "BouncingSprite.hpp"
-
 #include "gdextension_interface.h"
 #include "godot_cpp/core/defs.hpp"
 #include "godot_cpp/godot.hpp"
-
+//==================
+#include "BouncingSprite.hpp"
+#include "PropertiesExport.h"
+#include "CustomResource.h"
+//===========
 
 using  namespace godot;
 
@@ -17,6 +18,9 @@ void initailize(ModuleInitializationLevel p_level){
     }
 
     GDREGISTER_CLASS(BouncySprite);
+    GDREGISTER_CLASS(PropertiesExport);
+    GDREGISTER_CLASS(CustomResource);
+
 
 }
 //deinitializer

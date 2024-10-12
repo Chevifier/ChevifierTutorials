@@ -3,6 +3,7 @@
 
 #include <godot_cpp/classes/sprite2d.hpp>
 #include <godot_cpp/variant/vector2.hpp>
+#include <godot_cpp/classes/packed_scene.hpp>
 
 namespace godot {
 
@@ -31,7 +32,5 @@ class BouncySprite: public Sprite2D{
 };
 
 }
-
-
 
 #endif

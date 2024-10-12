@@ -1,5 +1,4 @@
 #include "BouncingSprite.hpp"
-
 using namespace godot;
 
 void BouncySprite::_bind_methods()
@@ -13,8 +12,7 @@ void BouncySprite::_bind_methods()
     //add property passing its setter and getter
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT,"speed"),"set_speed","get_speed");
     //create a signal passing the property/variable of type Object named node
-    ADD_SIGNAL(MethodInfo("direction_changed",PropertyInfo(Variant::OBJECT,"node")));
-
+    ADD_SIGNAL(MethodInfo("direction_changed",PropertyInfo(Variant::OBJECT,"node")));    
 }
 
 BouncySprite::BouncySprite()
@@ -83,3 +81,5 @@ void BouncySprite::set_speed(double new_speed){
 double BouncySprite::get_speed(){
     return speed;
 }
+
+

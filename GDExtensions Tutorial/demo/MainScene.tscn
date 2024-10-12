@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0bojd43e3tjn"]
+[gd_scene load_steps=4 format=3 uid="uid://c0bojd43e3tjn"]
 
 [ext_resource type="Texture2D" uid="uid://bpwq5vt3tri0v" path="res://DVD-Video_Logo_Scaled.png" id="1_hnkqs"]
 [ext_resource type="Script" path="res://DVD.gd" id="2_jfhig"]
+[ext_resource type="PackedScene" uid="uid://1h1ij7od3cmf" path="res://TreeDScene.tscn" id="3_felt4"]
 
 [node name="BouncySprite" type="BouncySprite"]
-speed = 120.0
-self_modulate = Color(0.146961, 0.328061, 0.42325, 1)
-position = Vector2(965.177, 485.953)
+self_modulate = Color(0.12258, 0.739662, 0.946799, 1)
+position = Vector2(562.921, 149.476)
 texture = ExtResource("1_hnkqs")
 script = ExtResource("2_jfhig")
+
+[node name="PropertiesExport" type="PropertiesExport" parent="."]
+number = 1845
+ranged_number = 256
+some_bool = true
+example_scene = ExtResource("3_felt4")
 
 [connection signal="direction_changed" from="." to="." method="_on_direction_changed"]
