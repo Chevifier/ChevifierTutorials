@@ -21,4 +21,7 @@ transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0.972
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Escape to toggle mouse"
+text = "Escape to toggle mouse
+WASD : Move
+Mouse: Rotation
+Left Mouse: Interact(When Visable)"
