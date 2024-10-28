@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://1h1ij7od3cmf" path="res://TreeDScene.tscn" id="3_felt4"]
 
 [node name="BouncySprite" type="BouncySprite"]
-self_modulate = Color(0.12258, 0.739662, 0.946799, 1)
-position = Vector2(562.921, 149.476)
+self_modulate = Color(0.125898, 0.905861, 0.970157, 1)
+position = Vector2(958.964, 128.335)
 texture = ExtResource("1_hnkqs")
 script = ExtResource("2_jfhig")
 
@@ -15,5 +15,8 @@ number = 1845
 ranged_number = 256
 some_bool = true
 example_scene = ExtResource("3_felt4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-259.078, -529.682)
 
 [connection signal="direction_changed" from="." to="." method="_on_direction_changed"]

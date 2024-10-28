@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0phhjjddqmgb"]
+
+[ext_resource type="Script" path="res://Better Implementation/Area3D.gd" id="1_li5yk"]
+[ext_resource type="PackedScene" uid="uid://dn05qn80dm0iy" path="res://player.tscn" id="2_6ewtf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ojb2x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fbt7m"]
+sky_material = SubResource("ProceduralSkyMaterial_ojb2x")
+
+[sub_resource type="Environment" id="Environment_uahws"]
+background_mode = 2
+sky = SubResource("Sky_fbt7m")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cb3g8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yre71"]
+viewport_path = NodePath("Area3D/Sprite3D/SubViewport")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uahws")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.997606, 0.00766286, -0.0687389, -3.29975e-09, 0.993843, 0.110792, 0.0691642, -0.110527, 0.991464, -0.603975, 0, -2)
+script = ExtResource("1_li5yk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2.56, 0, 0, 0, 2.56, 0, 0, 0, 2.56, 0, 0, -1.28)
+shape = SubResource("BoxShape3D_cb3g8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 7.45058e-09, 0.99, 0, 1.49012e-08, -1.28)
+size = Vector3(2.56, 2.56, 2.56)
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, -3.72529e-09, 1, 0, 0, 0, 1, 0, 0, 0)
+texture = SubResource("ViewportTexture_yre71")
+
+[node name="SubViewport" type="SubViewport" parent="Area3D/Sprite3D"]
+size = Vector2i(256, 256)
+
+[node name="Control" type="Control" parent="Area3D/Sprite3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Area3D/Sprite3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+text = "Button"
+
+[node name="CheckBox" type="CheckBox" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+text = "Checkbox"
+
+[node name="ItemList" type="ItemList" parent="Area3D/Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 3
+item_0/text = "Item 1"
+item_1/text = "Item 2"
+item_2/text = "Item 3"
+
+[node name="Player" parent="." instance=ExtResource("2_6ewtf")]
+transform = Transform3D(0.5383, 0, -0.842753, 0, 1, 0, 0.842753, 0, 0.5383, -2.2624, -0.560356, 0.115068)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.10231, 0)
+use_collision = true
+size = Vector3(12.1272, 1, 11.7482)
+
+[connection signal="input_event" from="Area3D" to="Area3D" method="_on_input_event"]
+[connection signal="text_submitted" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/LineEdit" to="Area3D" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/Button" to="Area3D" method="_on_button_pressed"]
+[connection signal="toggled" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/CheckBox" to="Area3D" method="_on_check_box_toggled"]
+[connection signal="item_selected" from="Area3D/Sprite3D/SubViewport/Control/VBoxContainer/ItemList" to="Area3D" method="_on_item_list_item_selected"]

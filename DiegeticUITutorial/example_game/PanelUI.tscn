@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://dychwo4wib26l"]
+
+[ext_resource type="Script" path="res://example_game/PanelUI.gd" id="1_l5bul"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 203.0
+offset_bottom = 367.0
+script = ExtResource("1_l5bul")
+
+[node name="Digits" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "0000"
+horizontal_alignment = 1
+
+[node name="Buttons" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
+
+[node name="Button" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "3"
+
+[node name="Button4" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "5"
+
+[node name="Button6" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "6"
+
+[node name="Button7" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "7"
+
+[node name="Button8" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "8"
+
+[node name="Button9" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "9"
+
+[node name="Button10" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "close"
+
+[node name="Button11" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "0"
+
+[node name="Button12" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+text = "#"

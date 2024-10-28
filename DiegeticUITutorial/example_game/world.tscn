@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://mqpc56g5bv6p"]
+
+[ext_resource type="PackedScene" uid="uid://dybnrhwk8blj" path="res://example_game/scene.blend" id="1_noyev"]
+[ext_resource type="Texture2D" uid="uid://b1c3esxwc15xd" path="res://example_game/icon.svg" id="2_5ypd5"]
+[ext_resource type="Texture2D" uid="uid://byxfeh8uvqnls" path="res://example_game/1.svg" id="3_fvdsq"]
+[ext_resource type="PackedScene" uid="uid://dqo8pw2ktjuo" path="res://example_game/panel.tscn" id="3_ta0jg"]
+[ext_resource type="PackedScene" uid="uid://dn05qn80dm0iy" path="res://player.tscn" id="3_xfdgc"]
+[ext_resource type="Texture2D" uid="uid://4pxc465ymfb0" path="res://example_game/3.svg" id="4_ba7ph"]
+[ext_resource type="PackedScene" uid="uid://dtmq674cmwsqv" path="res://example_game/door.tscn" id="5_bp3o2"]
+[ext_resource type="Texture2D" uid="uid://k8yt38erbcbn" path="res://example_game/7.svg" id="5_ijg1n"]
+[ext_resource type="Texture2D" uid="uid://6latj3gvunyw" path="res://example_game/9.svg" id="6_330b6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ol7i"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pj6kb"]
+sky_material = SubResource("ProceduralSkyMaterial_0ol7i")
+
+[sub_resource type="Environment" id="Environment_orw6v"]
+background_mode = 2
+sky = SubResource("Sky_pj6kb")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_orw6v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0.0459404, -9.53674e-07, 0.0179615)
+shadow_enabled = true
+
+[node name="scene" parent="." instance=ExtResource("1_noyev")]
+
+[node name="Decal" type="Decal" parent="scene"]
+transform = Transform3D(0.947272, -1.40065e-08, -0.320431, -0.320431, -4.14066e-08, -0.947272, 0, 1, -4.37114e-08, 4, 3, 0.142659)
+size = Vector3(2, 1, 2.23236)
+texture_albedo = ExtResource("2_5ypd5")
+
+[node name="1" type="Decal" parent="scene"]
+transform = Transform3D(-0.94721, -8.51153e-08, 0.320613, -0.320613, -1.40144e-08, -0.94721, 8.51153e-08, -1, -1.40144e-08, -5.14875, 3, 0.168354)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("3_fvdsq")
+
+[node name="3" type="Decal" parent="scene"]
+transform = Transform3D(-0.857212, -6.57449e-08, -0.514964, 0.514964, 5.58446e-08, -0.857212, 8.51153e-08, -1, -1.40144e-08, 0.885695, 5.95344, 0.168354)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("4_ba7ph")
+
+[node name="7" type="Decal" parent="scene"]
+transform = Transform3D(0.813917, -0.0177315, 0.580711, 0.580803, 6.08435e-08, -0.814045, 0.0144342, 0.999843, 0.0102986, -7.78544, 3, -9.8484)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("5_ijg1n")
+
+[node name="9" type="Decal" parent="scene"]
+transform = Transform3D(0.423501, -0.894482, -0.143347, -0.320613, -1.40144e-08, -0.94721, 0.847263, 0.447104, -0.286783, 9.6639, 3.77246, -3.72334)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("6_330b6")
+
+[node name="Player" parent="." instance=ExtResource("3_xfdgc")]
+
+[node name="panel" parent="." instance=ExtResource("3_ta0jg")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -1.85817, 2.88206, 0.262141)
+
+[node name="door" parent="." instance=ExtResource("5_bp3o2")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.0444913, 0.986676, 0.417744)
+
+[connection signal="close_request" from="panel" to="door" method="close_door"]
+[connection signal="code_success" from="panel" to="door" method="open_door"]

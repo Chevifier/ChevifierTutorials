@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn05qn80dm0iy"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_m7hj6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yg4i8"]
+radius = 0.611003
+height = 2.66417
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-0.999607, 0, 0.0280438, 0, 1, 0, -0.0280438, 0, -0.999607, -2.2624, 2.35264, -3.08321)
+script = ExtResource("1_m7hj6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yg4i8")
+
+[node name="cam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0.972797, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Escape to toggle mouse"

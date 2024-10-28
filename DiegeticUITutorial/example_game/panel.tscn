@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqo8pw2ktjuo"]
+
+[ext_resource type="PackedScene" uid="uid://dljsdg44o8dum" path="res://example_game/panel.blend" id="1_r7hhq"]
+[ext_resource type="PackedScene" uid="uid://dychwo4wib26l" path="res://example_game/PanelUI.tscn" id="2_21k6g"]
+[ext_resource type="Script" path="res://example_game/panel.gd" id="2_xu05t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gf1h0"]
+size = Vector3(0.32132, 0.579523, 0.131491)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qfxli"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip305"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_qfxli")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4gees"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ip305")
+size = Vector2(0.335, 0.595)
+
+[node name="panel" instance=ExtResource("1_r7hhq")]
+script = ExtResource("2_xu05t")
+
+[node name="Area3D" type="Area3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00468138)
+shape = SubResource("BoxShape3D_gf1h0")
+
+[node name="Cube_005" parent="." index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="display" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00098829, 0.0549864)
+mesh = SubResource("QuadMesh_4gees")
+
+[node name="SubViewport" type="SubViewport" parent="." index="3"]
+scaling_3d_scale = 0.9
+size = Vector2i(207, 367)
+
+[node name="VBoxContainer" parent="SubViewport" index="0" instance=ExtResource("2_21k6g")]

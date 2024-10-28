@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtmq674cmwsqv"]
+
+[ext_resource type="PackedScene" uid="uid://cpdqqx8o31l1i" path="res://example_game/door.blend" id="1_lphiy"]
+[ext_resource type="Script" path="res://example_game/door.gd" id="2_ulivq"]
+
+[sub_resource type="Animation" id="Animation_twj0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doorL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.05, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doorR:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.05, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_271ba"]
+resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doorR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.05, 0), Vector3(-2.41169, 2.05, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doorL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.05, 0), Vector3(3.25281, 2.05, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxs51"]
+_data = {
+"RESET": SubResource("Animation_twj0r"),
+"activate": SubResource("Animation_271ba")
+}
+
+[node name="door" instance=ExtResource("1_lphiy")]
+script = ExtResource("2_ulivq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_oxs51")
+}
